@@ -1,38 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DELTA Profile Viewer App
 
-## Getting Started
+## Introduction
 
-First, run the development server:
+This app will allow clients to access the projects and information of the DELTA alumni
 
-```bash
+![2023-03-20_15-04](https://user-images.githubusercontent.com/67952319/226347180-36185c88-f162-4b8c-ada6-6e1ffadd4a8c.png)
+
+
+## How to run
+
+To run this project on your local machine make sure that all the following are checked
+
+- [ ] Nodejs installed on your computer ([MacOS](https://nodejs.org/en/download/), [Windows](https://nodejs.org/en/download/), [Linux](https://nodejs.org/en/download/))
+- [ ] Git installed on your computer
+
+Use the following commands to get started with the project
+
+```js
+git clone https://github.com/chanceDira/delta-profile-viewer-fe.git
+cd delta-profile-viewer-fe
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+To successfully navigate the codebase of the project, you will need undertanding of the following technologies that are being used to develop this application:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- NextJS
+- TypeScript
+- Tailwindcss
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
