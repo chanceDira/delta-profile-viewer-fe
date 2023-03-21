@@ -31,9 +31,13 @@ module.exports = {
       green: colors.green,
       primary: {
         '100': '#F8F3E5',
+        "50":"#D1E3C3",
+        '100': '#EFE4C7',
         '600': '#B68D25',
+
       },
       secondary: {
+        "50":"#F8F3E5",
         '100': '#E3F0D8',
         '600': '#72B63D'
       }
