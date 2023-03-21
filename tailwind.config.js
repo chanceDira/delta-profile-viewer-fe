@@ -34,7 +34,7 @@ module.exports = {
         "50":"#D1E3C3",
         '100': '#EFE4C7',
         '600': '#B68D25',
-
+        
       },
       secondary: {
         "50":"#F8F3E5",
