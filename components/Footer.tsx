@@ -33,32 +33,29 @@ function Footer() {
           </div>
           <div className="space-y-2 text-sm">
             <p className="text-base font-bold tracking-wide text-white">
-            Quick links
+              Quick links
             </p>
             <div className="flex">
-              
               <a
                 href="tel:850-123-5021"
                 aria-label="Our phone"
                 title="Our phone"
                 className="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
               >
-               Signup
+                Signup
               </a>
             </div>
             <div className="flex">
-              
               <a
                 href="mailto:info@lorem.mail"
                 aria-label="Our email"
                 title="Our email"
                 className="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
               >
-               Login
+                Login
               </a>
             </div>
             <div className="flex">
-              
               <a
                 href="https://www.google.com/maps"
                 target="_blank"
@@ -67,7 +64,7 @@ function Footer() {
                 title="Our address"
                 className="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800"
               >
-               Dabblerlab
+                Dabblerlab
               </a>
             </div>
           </div>
@@ -76,12 +73,11 @@ function Footer() {
               Social
             </span>
             <div>
-      <AiOutlineInstagram className="inline-block mr-4 text-3xl" />
-      <FaFacebookSquare className="inline-block mr-4 text-3xl" />
-      <AiFillGithub className="inline-block mr-4 text-3xl" />
-      <AiFillLinkedin className="inline-block text-3xl" />
-    </div>
-            
+              <AiOutlineInstagram className="inline-block mr-4 text-3xl" />
+              <FaFacebookSquare className="inline-block mr-4 text-3xl" />
+              <AiFillGithub className="inline-block mr-4 text-3xl" />
+              <AiFillLinkedin className="inline-block text-3xl" />
+            </div>
           </div>
         </div>
         <div className="flex flex-col-reverse justify-between pt-5 pb-10 border-t lg:flex-row">
@@ -148,8 +144,6 @@ export default Footer;
 //   </div>
 //   <div className="place-self-start w-1/4">
 //     <h1 className="font-bold text-xl">Social media</h1>
-
-
 
 //   </div>
 // </div>
