@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import React from 'react'
+import {BsCodeSlash} from 'react-icons/bs'
 
 function Navbar() {
   return (
     <div className='flex justify-between items-center px-12 py-4'>
-      <p className='text-secondary-600 text-3xl'>{`</>`}</p>
+      <p className='text-secondary-600 text-3xl'><BsCodeSlash /></p>
       <div>
         <Link href="/" className='text-primary-600 mr-4 text-lg'>
           Sign up
