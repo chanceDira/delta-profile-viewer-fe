@@ -30,7 +30,7 @@ module.exports = {
       slate: colors.slate,
       green: colors.green,
       primary: {
-        '100': '#EFE4C7',
+        '100': '#F8F3E5',
         '600': '#B68D25',
       },
       secondary: {
