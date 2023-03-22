@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Link from "next/link";
 import Head from "next/head";
 
-function login() {
+function Signup() {
   return (
     <>
       <Head>
@@ -13,7 +13,7 @@ function login() {
       </Head>
       <div className="h-screen flex flex-col">
         <Navbar />
-        <div className="grow">
+        <div className="grow min-h-screen ">
           <section className="mt-14">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
               <div className="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 ">
@@ -89,4 +89,4 @@ function login() {
   );
 }
 
-export default login;
+export default Signup;
