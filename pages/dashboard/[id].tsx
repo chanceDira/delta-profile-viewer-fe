@@ -3,6 +3,12 @@ import ProjectCard from "@/components/ProjectCard";
 import Image from "next/image";
 import React, { useState } from "react";
 import Link from "next/link";
+import {FiLink2} from "react-icons/fi"
+import {
+  AiFillGithub,
+  AiFillLinkedin,
+} from "react-icons/ai";
+import { FaTwitter } from "react-icons/fa";
 
 const SingleTalent = () => {
   return (
@@ -44,42 +50,18 @@ const SingleTalent = () => {
               really doing awesome in terms revenue and ads{" "}
             </div>
           </div>
-          <div className=" flex flex-row">
+          <div className=" flex flex-row mt-6">
             <div>
-              <Image
-                src="/website.svg"
-                width={30}
-                height={30}
-                alt="heroImage"
-                className="cursor-pointer"
-              />
+              <FiLink2 className="inline-block mr-4 text-3xl text-secondary-600" />
             </div>
             <div>
-              <Image
-                src="/github.svg"
-                width={30}
-                height={30}
-                alt="heroImage"
-                className="cursor-pointer"
-              />
+              <AiFillGithub className="inline-block mr-4 text-3xl text-secondary-600" />
             </div>
             <div>
-              <Image
-                src="/twitter.svg"
-                width={30}
-                height={30}
-                alt="heroImage"
-                className="cursor-pointer"
-              />
+              <FaTwitter className="inline-block mr-4 text-3xl text-secondary-600"/>
             </div>
             <div>
-              <Image
-                src="/linkedin.svg"
-                width={30}
-                height={30}
-                alt="heroImage"
-                className="cursor-pointer"
-              />
+             <AiFillLinkedin className="inline-block mr-4 text-3xl text-secondary-600"/>
             </div>
           </div>
           <div className="mt-20 flex flex-col justify-center items-center">
