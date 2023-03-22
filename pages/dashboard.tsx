@@ -9,9 +9,9 @@ const Dashboard = () => {
       <div>
         <Navbar />
       </div>
-      <div className="flex flex-row min-h-screen ">
+      <div className="md:flex md:flex-row min-h-screen ">
         <div className="w-1/4 border-r-2  ">
-          <div className="mx-10 my-20">
+          <div className="mx-10 my-20 md:block sm:hidden">
             <CheckItem name="All" />
             <CheckItem name="Names" />
             <CheckItem name="Countries" />
@@ -19,7 +19,7 @@ const Dashboard = () => {
             <CheckItem name="Certificates" />
           </div>
         </div>
-        <div className=" w-full px-40 py-20">
+        <div className=" w-full md:px-40 md:py-20 sm:px-6 sm:py-6">
           <TalentCard />
         </div>
       </div>
