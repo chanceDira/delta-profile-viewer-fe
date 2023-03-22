@@ -9,11 +9,11 @@ import Image from "next/image";
 
 function Navbar() {
   const [navbar, setNavbar] = useState(false);
-  const [showSearch, setShowSearch]  = useState('')
+  const [showSearch, setShowSearch] = useState("");
 
   useEffect(() => {
-    setShowSearch(window.location.pathname)
-  }, [])
+    setShowSearch(window.location.pathname);
+  }, []);
 
   return (
     <nav className="w-full bg-white shadow">
@@ -35,18 +35,22 @@ function Navbar() {
             </div>
           </div>
         </div>
-        <div className={`${showSearch == '/dashboard' ? '': 'hidden'} w-1/2 `}>
+        <div className={`${showSearch == "/dashboard" ? "" : "hidden"} w-1/2 `}>
           <div className=" flex flex-row bg-primary-100 p-2 rounded-md ">
             <div>
-            <Image
+              <Image
                 src="/searchsvg.svg"
                 width={25}
                 height={25}
                 alt="checkImage"
-                className=""            />
+                className=""
+              />
             </div>
             <div className="w-10/12">
-              <input type='text' className=" mx-4 w-full outline-none text-primary-600 bg-primary-100" />
+              <input
+                type="text"
+                className=" mx-4 w-full outline-none text-primary-600 bg-primary-100"
+              />
             </div>
           </div>
         </div>
