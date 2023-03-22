@@ -52,16 +52,16 @@ const SingleTalent = () => {
           </div>
           <div className=" flex flex-row mt-6">
             <div>
-              <FiLink2 className="inline-block mr-4 text-3xl text-secondary-600" />
+              <FiLink2 className="inline-block mr-4 text-3xl text-secondary-600 cursor-pointer" />
             </div>
             <div>
-              <AiFillGithub className="inline-block mr-4 text-3xl text-secondary-600" />
+              <AiFillGithub className="inline-block mr-4 text-3xl text-secondary-600 cursor-pointer" />
             </div>
             <div>
-              <FaTwitter className="inline-block mr-4 text-3xl text-secondary-600"/>
+              <FaTwitter className="inline-block mr-4 text-3xl text-secondary-600 cursor-pointer"/>
             </div>
             <div>
-             <AiFillLinkedin className="inline-block mr-4 text-3xl text-secondary-600"/>
+             <AiFillLinkedin className="inline-block mr-4 text-3xl text-secondary-600 cursor-pointer"/>
             </div>
           </div>
           <div className="mt-20 flex flex-col justify-center items-center">

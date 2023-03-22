@@ -11,7 +11,7 @@ import Image from "next/image";
 
 function Navbar() {
   const [navbar, setNavbar] = useState(false);
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(true);
   const [showSearch, setShowSearch] = useState("");
 
   useEffect(() => {
@@ -19,7 +19,7 @@ function Navbar() {
   }, []);
 
   return (
-    <nav className="w-full bg-white shadow">
+    <nav className="w-full bg-white shadow relative">
       <div className="flex items-center justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div className=" py-3 md:py-5 md:block">
           <Link href="/">
@@ -42,8 +42,26 @@ function Navbar() {
             className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 `}
           >
             {auth ? (
-              <div>
-                <CgProfile className="text-4xl text-gray-400" />
+              <div className="">
+                <CgProfile
+                  className="text-4xl text-gray-400 cursor-pointer"
+                  onClick={() => setNavbar(!navbar)}
+                />
+                {navbar && (
+                  <div className="absolute top-14 md:right-36 sm:right-4 right-0 z-10 h-30 w-60  bg-white rounded drop-shadow-xl px-4 py-2">
+                    <div className="flex items-center">
+                      <CgProfile className="text-4xl text-gray-400 mr-4" />
+                      <div>
+                        <h1 className="text-primary-600 font-bold ">Alice</h1>
+                        <p className="text-secondary-600">Client</p>
+                      </div>
+                    </div>
+                    <div className="border border-gray-300 my-2"></div>
+                    <Link href="/" className="text-secondary-600">
+                      Logout
+                    </Link>
+                  </div>
+                )}
               </div>
             ) : (
               <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
@@ -73,12 +91,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-// <div className="md:hidden">
-//               <button
-//                 className="p-2 text-gray-700 rounded-md "
-//                 onClick={() => setNavbar(!navbar)}
-//               >
-//                 {navbar ? <RxCross2 /> : <AiOutlineMenu />}
-//               </button>
-//             </div>
