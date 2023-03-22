@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { Primary } from "./Buttons";
 
@@ -23,7 +24,9 @@ const TalentCard = () => {
           doing awesome in terms revenue and ads{" "}
         </div>
         <div className="mt-4">
-          <Primary name="View profile" />
+          <Link href="/dashboard/7438">
+            <Primary name="View profile" />
+          </Link>
         </div>
       </div>
     </div>
