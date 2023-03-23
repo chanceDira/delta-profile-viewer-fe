@@ -59,10 +59,10 @@ function Signup() {
         },
       })
         .then((res) => {
-          const { token,user } = res.data.signup;
-          if(token && user){
-            Cookies.set('token', token, { expires: 7 })
-             localStorage.setItem("currentUser",JSON.stringify(user));
+          const { token, user } = res.data.signup;
+          if (token && user) {
+            Cookies.set("token", token, { expires: 7 });
+            localStorage.setItem("currentUser", JSON.stringify(user));
             window.location.href = "/dashboard";
           }
         })
@@ -90,6 +90,9 @@ function Signup() {
                   <h1 className="text-xl font-bold leading-tight tracking-tight text-secondary-600 md:text-2xl text-center">
                     Sign Up
                   </h1>
+                  <div className="text-red-500 mb-4 text-sm">
+                    {error ? error.message : ""}
+                  </div>
                   <form className="space-y-4 md:space-y-6" action="#">
                     <div>
                       <label className="block mb-2 text-sm font-medium text-primary-600 ">
