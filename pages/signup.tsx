@@ -91,6 +91,9 @@ function Signup() {
                     Sign Up
                   </h1>
                   <form className="space-y-4 md:space-y-6" action="#">
+                    <div className="text-red-500 mb-4 text-sm">
+                      {error ? error.message : ""}
+                    </div>
                     <div>
                       <label className="block mb-2 text-sm font-medium text-primary-600 ">
                         FirstName
