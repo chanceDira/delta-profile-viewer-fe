@@ -5,6 +5,9 @@ import Image from "next/image";
 import { Primary } from "@/components/Buttons";
 
 function Home() {
+  const handleClick = ()=>{
+    window.location.href="/dashboard"
+  }
   return (
     <div className="h-screen flex flex-col">
       <Navbar />
@@ -27,7 +30,7 @@ function Home() {
             <p className="text-primary-600 text-sm mb-4">
               Here you will access our talent's projects and information.
             </p>
-            <Primary name="Get started" />
+            <Primary name="Get started" handleClick={handleClick} />
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import TalentCard from "@/components/TalentCard";
 import { useQuery, gql } from "@apollo/client";
 import React from "react";
+import Loader from "@/components/Loader";
 
 const Dashboard = () => {
   const GET_PROFILES = gql`
@@ -39,7 +40,9 @@ const Dashboard = () => {
         </div>
         <div className=" w-full px-40 py-20">
           {loading ? (
-            <h2>Loading</h2>
+            <div className="flex items-center justify-center min-h-screen">
+              <Loader />
+            </div>
           ) : error ? (
             <h2>{error.message}</h2>
           ) : data?.getProfiles?.length > 0 ? (
