@@ -1,10 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import { useMutation, gql } from "@apollo/client";
+import BtnLoader from "@/components/BtnLoader";
+import Cookies from "js-cookie";
 
+const SIGNIN_MUTATION = gql`
+  mutation SignIn($email: String!, $password: String!) {
+    signin(data: { email: $email, password: $password }) {
+      user {
+        firstname
+        lastname
+        email
+      }
+      token
+    }
+  }
+`;
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [signIn, { loading, error, data }] = useMutation(SIGNIN_MUTATION);
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    signIn({ variables: { email, password } })
+      .then((res) => {
+        const { token,user } = res.data.signup;
+        if (token && user) {
+          Cookies.set("token", token, { expires: 7 });
+          localStorage.setItem("currentUser",user);
+          window.location.href = "/dashboard";
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  
+ 
   return (
     <>
       <Head>
@@ -21,6 +58,11 @@ function Login() {
                   <h1 className="text-xl font-bold leading-tight tracking-tight text-secondary-600 md:text-2xl text-center">
                     Login
                   </h1>
+                  <div className="text-red-500 mb-4 text-sm">
+                    {
+                    error ? error.message : ""
+                  }
+                  </div>
                   <form className="space-y-4 md:space-y-6" action="#">
                     <div>
                       <label className="block mb-2 text-sm font-medium text-primary-600 ">
@@ -32,6 +74,8 @@ function Login() {
                         id="email"
                         className="bg-secondary-50 border border-secondary-50 text-gray-900 sm:text-sm rounded-lg focus:ring-0 focus:outline-none block w-full p-2.5  "
                         placeholder="name@company.com"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
                         required
                       />
                     </div>
@@ -46,6 +90,8 @@ function Login() {
                         placeholder="••••••••"
                         className="bg-secondary-50 border border-secondary-50 text-gray-900 sm:text-sm rounded-lg focus:ring-0 focus:outline-none block w-full p-2.5  "
                         required
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
                       />
                     </div>
                     <div className="flex items-center justify-between">
@@ -66,19 +112,19 @@ function Login() {
                     </div>
 
                     <button
-                      type="submit"
-                      className="w-full text-white bg-secondary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                      onClick={(e) => handleSubmit(e)}
+                      className="relative h-12 w-full text-white bg-secondary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                     >
-                      <Link href="/dashboard">Sign in</Link>
+                      {loading ? <BtnLoader /> : "Sign in"}
                     </button>
                     <p className="text-sm font-light text-primary-600 ">
                       Don’t have an account?{" "}
-                      <a
-                        href="#"
+                      <Link
+                        href="/signup"
                         className="font-medium text-secondary-600 hover:underline "
                       >
                         Sign up
-                      </a>
+                      </Link>
                     </p>
                   </form>
                 </div>
