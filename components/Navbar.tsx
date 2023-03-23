@@ -61,7 +61,7 @@ useEffect(()=>{
             </p>
           </Link>
         </div>
-        <div className={`${showSearch == "/dashboard" ? "" : "hidden"} w-1/2 `}>
+        {/* <div className={`${showSearch == "/dashboard" ? "" : "hidden"} w-1/2 `}>
           <div className="w-10/12 h-6 relative  md:block">
             <input
               type="text"
@@ -69,7 +69,7 @@ useEffect(()=>{
             />
             <CiSearch className=" absolute top-2 left-5 text-primary-600" />
           </div>
-        </div>
+        </div> */}
         <div>
           <div
             className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 `}
