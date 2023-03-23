@@ -29,10 +29,11 @@ function Login() {
     event.preventDefault();
     signIn({ variables: { email, password } })
       .then((res) => {
-        const { token,user } = res.data.signup;
+        console.log(res);
+        const { token, user } = res.data.signin;
         if (token && user) {
           Cookies.set("token", token, { expires: 7 });
-          localStorage.setItem("currentUser",user);
+          localStorage.setItem("currentUser", JSON.stringify(user));
           window.location.href = "/dashboard";
         }
       })
@@ -40,8 +41,7 @@ function Login() {
         console.log(err);
       });
   };
-  
- 
+
   return (
     <>
       <Head>
@@ -59,9 +59,7 @@ function Login() {
                     Login
                   </h1>
                   <div className="text-red-500 mb-4 text-sm">
-                    {
-                    error ? error.message : ""
-                  }
+                    {error ? error.message : ""}
                   </div>
                   <form className="space-y-4 md:space-y-6" action="#">
                     <div>

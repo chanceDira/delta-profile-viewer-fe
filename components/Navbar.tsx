@@ -14,7 +14,7 @@ function Navbar() {
   const [navbar, setNavbar] = useState(false);
   const [auth, setAuth] = useState(false);
   const [showSearch, setShowSearch] = useState("");
-  const [user, setUser]=useState(null)
+  const [user, setUser]=useState<any>(null)
 
   useEffect(() => {
     setShowSearch(window.location.pathname);
@@ -32,13 +32,15 @@ function Navbar() {
 
   const handleLogout = () => {
     Cookies.remove("token");
+    localStorage.remove('currentUser')
     setAuth(false);
     window.location.href = "/";
   };
 
 
 useEffect(()=>{
-   const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+  //@ts-ignore
+   const currentUser:any = JSON.parse(localStorage.getItem('currentUser'))
    if (currentUser){
     setUser(currentUser)
   }
