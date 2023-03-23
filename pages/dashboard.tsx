@@ -38,7 +38,7 @@ const Dashboard = () => {
             <CheckItem name="Certificates" />
           </div>
         </div>
-        <div className=" w-full px-40 py-20">
+        <div className=" w-full md:px-40 sm:px-4 py-20">
           {loading ? (
             <div className="flex items-center justify-center min-h-screen">
               <Loader />

@@ -74,7 +74,7 @@ const SingleTalent = () => {
                   width={100}
                   height={100}
                   alt="heroImage"
-                  className="rounded-full w-28 h-28"
+                  className="rounded-full w-28 h-28 object-cover"
                 />
               </div>
               <div className=" text-primary-600 font-bold text-3xl ">
