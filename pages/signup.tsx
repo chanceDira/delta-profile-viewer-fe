@@ -3,7 +3,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import Head from "next/head";
+import BtnLoader from "@/components/BtnLoader";
 import { useMutation, gql } from "@apollo/client";
+import Cookies from "js-cookie";
 
 function Signup() {
   const [email, setEmail] = useState<any>("");
@@ -13,8 +15,8 @@ function Signup() {
   const [occupation, setoccupation] = useState<any>("");
 
   //create a graphql signup mutation query
-  const SIGNUP = gql`
-    mutation signup(
+  const SIGNUP_MUTATION = gql`
+    mutation Signup(
       $firstname: String!
       $lastname: String!
       $email: String!
@@ -22,17 +24,25 @@ function Signup() {
       $occupation: String!
     ) {
       signup(
-        firstname: $firstname
-        lastname: $lastname
-        email: $email
-        password: $password
-        occupation: $occupation
-      ) 
+        data: {
+          firstname: $firstname
+          lastname: $lastname
+          email: $email
+          password: $password
+          occupation: $occupation
+        }
+      ) {
+        user {
+          firstname
+          lastname
+          email
+        }
+        token
+      }
     }
   `;
 
-  const [signup, { data, loading, error }] = useMutation(SIGNUP);
-
+  const [signup, { loading, error, data }] = useMutation(SIGNUP_MUTATION);
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
@@ -41,17 +51,19 @@ function Signup() {
       //if all fields are entered, then call the signup mutation
       signup({
         variables: {
-          data: {
-            firstname: firstname,
-            lastname: lastname,
-            email: email,
-            password: password,
-            occupation: occupation,
-          },
+          firstname: firstname,
+          lastname: lastname,
+          email: email,
+          password: password,
+          occupation: occupation,
         },
       })
         .then((res) => {
-          console.log(res);
+          const { token } = res.data.signup;
+          if(token){
+            Cookies.set('token', token, { expires: 7 })
+            window.location.href = "/dashboard";
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -156,9 +168,9 @@ function Signup() {
 
                     <button
                       onClick={(e) => handleSubmit(e)}
-                      className="w-full text-white bg-secondary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                      className="relative h-12 w-full text-white bg-secondary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                     >
-                      Sign Up
+                      {loading ? <BtnLoader /> : "Sign Up"}
                     </button>
                     <p className="text-sm font-light text-primary-600 ">
                       Have an account?{" "}
