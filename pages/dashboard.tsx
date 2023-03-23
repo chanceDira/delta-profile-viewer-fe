@@ -1,9 +1,27 @@
 import CheckItem from "@/components/CheckItem";
 import Navbar from "@/components/Navbar";
 import TalentCard from "@/components/TalentCard";
+import { useQuery, gql } from "@apollo/client";
 import React from "react";
 
 const Dashboard = () => {
+  const GET_PROFILES = gql`
+    query {
+      getProfiles {
+        id
+        firstname
+        lastname
+        email
+        github
+        about
+        photo
+        phone
+        address
+      }
+    }
+  `;
+  const { loading, error, data } = useQuery(GET_PROFILES);
+
   return (
     <div>
       <div>
@@ -19,8 +37,22 @@ const Dashboard = () => {
             <CheckItem name="Certificates" />
           </div>
         </div>
-        <div className=" w-full md:px-40 md:py-20 sm:px-6 sm:py-6">
-          <TalentCard />
+        <div className=" w-full px-40 py-20">
+          {loading ? (
+            <h2>Loading</h2>
+          ) : error ? (
+            <h2>{error.message}</h2>
+          ) : data?.getProfiles?.length > 0 ? (
+            data?.getProfiles?.map((profile: any, index: any) => {
+              return (
+                <div key={index} className="my-8">
+                  <TalentCard profile={profile} />
+                </div>
+              );
+            })
+          ) : (
+            <h2>No profile(s) found</h2>
+          )}
         </div>
       </div>
     </div>
