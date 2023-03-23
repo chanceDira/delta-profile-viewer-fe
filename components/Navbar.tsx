@@ -9,6 +9,7 @@ import { CiSearch } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
 import Cookies from "js-cookie";
 import Image from "next/image";
+import { redirect } from 'next/navigation';
 
 function Navbar() {
   const [navbar, setNavbar] = useState(false);
@@ -32,9 +33,13 @@ function Navbar() {
 
   const handleLogout = () => {
     Cookies.remove("token");
-    localStorage.remove('currentUser')
+    if (typeof window !== 'undefined') {
+      localStorage.remove('currentUser')
+    }
     setAuth(false);
-    window.location.href = "/";
+    // window.location.href = "/";
+
+    return redirect("/")
   };
 
 
@@ -87,7 +92,7 @@ useEffect(()=>{
                     <div className="border border-gray-300 my-2"></div>
                     <p
                       onClick={() => handleLogout()}
-                      className="text-secondary-600"
+                      className="text-secondary-600 cursor-pointer"
                     >
                       Logout
                     </p>
