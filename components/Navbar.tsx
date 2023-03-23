@@ -14,6 +14,7 @@ function Navbar() {
   const [navbar, setNavbar] = useState(false);
   const [auth, setAuth] = useState(false);
   const [showSearch, setShowSearch] = useState("");
+  const [user, setUser]=useState(null)
 
   useEffect(() => {
     setShowSearch(window.location.pathname);
@@ -34,6 +35,14 @@ function Navbar() {
     setAuth(false);
     window.location.href = "/";
   };
+
+
+useEffect(()=>{
+   const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+   if (currentUser){
+    setUser(currentUser)
+  }
+ },[])
 
   return (
     <nav className="w-full bg-white shadow relative">
@@ -69,8 +78,8 @@ function Navbar() {
                     <div className="flex items-center">
                       <CgProfile className="text-4xl text-gray-400 mr-4" />
                       <div>
-                        <h1 className="text-primary-600 font-bold ">Alice</h1>
-                        <p className="text-secondary-600">Client</p>
+                        <h1 className="text-primary-600 font-bold ">{user && user.firstname}</h1>
+                        <p className="text-secondary-600">{user && user.__typename}</p>
                       </div>
                     </div>
                     <div className="border border-gray-300 my-2"></div>
