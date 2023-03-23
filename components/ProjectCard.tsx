@@ -1,7 +1,15 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-const ProjectCard = () => {
+const trimString = (str: string, length: number) => {
+  if (str.length > length) {
+    return str.substring(0, length) + "...";
+  } else {
+    return str;
+  }
+};
+
+const ProjectCard = ({ project }: any) => {
   const [showProjectDetailModel, setShowProjectDetailModel] = useState(false);
 
   const handleShowProjectDetailModel = (e: any) => {
@@ -9,6 +17,15 @@ const ProjectCard = () => {
     setShowProjectDetailModel(!showProjectDetailModel);
   };
 
+  const handleViewCode = () => {
+    //open new tab with link to github
+    window.open(project.githuburl, "_blank");
+  };
+
+  const handleViewVideo = () => {
+    //open new tab with link to video
+    window.open(project.githuburl, "_blank");
+  };
   return (
     <>
       {/* ===============start :: project details model==================  */}
@@ -50,25 +67,25 @@ const ProjectCard = () => {
                     />
                   </div>
                   <div className="p-2 text-primary-600 text-xl font-bold">
-                    Project name
+                    {project && project.projectname}
                   </div>
                 </div>
 
                 <div className="flex flex-row items-center p-2 my-2 italic text-primary-600">
-                  Project desc, Lorem Ipsum is simply dummy text of the printing
-                  and typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s,
+                  {project && project.projectdescription}
                 </div>
               </div>
               <div className="w-full flex flex-col">
                 <div
                   className="flex justify-center bg-secondary-600 hover:bg-primary-400 p-4 rounded-md mx-1 cursor-pointer"
+                  onClick={() => handleViewCode()}
                 >
                   <h3 className=" text-white font-bold">View code</h3>
                 </div>
 
                 <div
                   className="flex justify-center bg-secondary-600 hover:bg-primary-400 p-4 rounded-md mx-1 mt-4 cursor-pointer"
+                  onClick={() => handleViewVideo()}
                 >
                   <h3 className=" text-white font-bold">View video</h3>
                 </div>
@@ -78,18 +95,18 @@ const ProjectCard = () => {
         </div>
       </div>
       {/* ===============end :: project details model==================  */}
-      <div>
+      <div className="w-80 h-80">
         <div>
           <Image
             src="/projectHolder.svg"
             width={300}
             height={300}
             alt="heroImage"
-            className="cursor-pointer"
+            className="cursor-pointe w-full"
           />
         </div>
         <div className="p-2 text-primary-600 text-xl font-bold border-l-4 border-primary-100">
-          Project name
+          {trimString(project && project.projectname, 25)}
         </div>
         <div
           className="bg-primary-600 cursor-pointer text-white flex flex-row justify-between items-center p-3"
