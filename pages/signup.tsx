@@ -27,9 +27,7 @@ function Signup() {
         email: $email
         password: $password
         occupation: $occupation
-      ) {
-        message
-      }
+      ) 
     }
   `;
 
@@ -43,11 +41,13 @@ function Signup() {
       //if all fields are entered, then call the signup mutation
       signup({
         variables: {
-          firstname: firstname,
-          lastname: lastname,
-          email: email,
-          password: password,
-          occupation: occupation,
+          data: {
+            firstname: firstname,
+            lastname: lastname,
+            email: email,
+            password: password,
+            occupation: occupation,
+          },
         },
       })
         .then((res) => {
