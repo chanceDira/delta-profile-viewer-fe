@@ -1,10 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import Head from "next/head";
+import { useMutation, gql } from "@apollo/client";
 
 function Signup() {
+  const [email, setEmail] = useState<any>("");
+  const [password, setPassword] = useState<any>("");
+  const [firstname, setfirstName] = useState<any>("");
+  const [lastname, setlastName] = useState<any>("");
+  const [occupation, setoccupation] = useState<any>("");
+
+  //create a graphql signup mutation query
+  const SIGNUP = gql`
+    mutation signup(
+      $firstname: String!
+      $lastname: String!
+      $email: String!
+      $password: String!
+      $occupation: String!
+    ) {
+      signup(
+        firstname: $firstname
+        lastname: $lastname
+        email: $email
+        password: $password
+        occupation: $occupation
+      ) {
+        message
+      }
+    }
+  `;
+
+  const [signup, { data, loading, error }] = useMutation(SIGNUP);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    //first check if the user has entered all the fields
+    if (email && password && firstname && lastname && occupation) {
+      //if all fields are entered, then call the signup mutation
+      signup({
+        variables: {
+          firstname: firstname,
+          lastname: lastname,
+          email: email,
+          password: password,
+          occupation: occupation,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      return;
+    }
+  };
+
   return (
     <>
       <Head>
@@ -24,7 +80,7 @@ function Signup() {
                   <form className="space-y-4 md:space-y-6" action="#">
                     <div>
                       <label className="block mb-2 text-sm font-medium text-primary-600 ">
-                        FullName
+                        FirstName
                       </label>
                       <input
                         type="text"
@@ -32,6 +88,38 @@ function Signup() {
                         id="name"
                         className="bg-secondary-50 border border-secondary-50 text-gray-900 sm:text-sm rounded-lg focus:ring-0 focus:outline-none block w-full p-2.5  "
                         placeholder="john"
+                        value={firstname}
+                        onChange={(e) => setfirstName(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block mb-2 text-sm font-medium text-primary-600 ">
+                        LastName
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        className="bg-secondary-50 border border-secondary-50 text-gray-900 sm:text-sm rounded-lg focus:ring-0 focus:outline-none block w-full p-2.5  "
+                        placeholder="doe"
+                        value={lastname}
+                        onChange={(e) => setlastName(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block mb-2 text-sm font-medium text-primary-600 ">
+                        Occupation
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        className="bg-secondary-50 border border-secondary-50 text-gray-900 sm:text-sm rounded-lg focus:ring-0 focus:outline-none block w-full p-2.5  "
+                        placeholder="Engineer"
+                        value={occupation}
+                        onChange={(e) => setoccupation(e.target.value)}
                         required
                       />
                     </div>
@@ -46,6 +134,8 @@ function Signup() {
                         className="bg-secondary-50 border border-secondary-50 text-gray-900 sm:text-sm rounded-lg focus:ring-0 focus:outline-none block w-full p-2.5  "
                         placeholder="name@company.com"
                         required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
                     <div>
@@ -59,11 +149,13 @@ function Signup() {
                         placeholder="••••••••"
                         className="bg-secondary-50 border border-secondary-50 text-gray-900 sm:text-sm rounded-lg focus:ring-0 focus:outline-none block w-full p-2.5  "
                         required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </div>
 
                     <button
-                      type="submit"
+                      onClick={(e) => handleSubmit(e)}
                       className="w-full text-white bg-secondary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                     >
                       Sign Up

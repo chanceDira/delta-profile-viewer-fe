@@ -7,16 +7,33 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 import { CiSearch } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
+import Cookies from "js-cookie";
 import Image from "next/image";
 
 function Navbar() {
   const [navbar, setNavbar] = useState(false);
-  const [auth, setAuth] = useState(true);
+  const [auth, setAuth] = useState(false);
   const [showSearch, setShowSearch] = useState("");
 
   useEffect(() => {
     setShowSearch(window.location.pathname);
   }, []);
+
+  // check if user token available in Cookies and set auth to true
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (token) {
+      setAuth(true);
+    } else {
+      setAuth(false);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    Cookies.remove("token");
+    setAuth(false);
+    window.location.href = "/";
+  };
 
   return (
     <nav className="w-full bg-white shadow relative">
@@ -57,9 +74,12 @@ function Navbar() {
                       </div>
                     </div>
                     <div className="border border-gray-300 my-2"></div>
-                    <Link href="/" className="text-secondary-600">
+                    <p
+                      onClick={() => handleLogout()}
+                      className="text-secondary-600"
+                    >
                       Logout
-                    </Link>
+                    </p>
                   </div>
                 )}
               </div>
