@@ -87,7 +87,7 @@ const SingleTalent = () => {
                 {data?.getProfile.firstname} {data?.getProfile.lastname}
               </div>
               <div className=" text-secondary-600">Full stack Developer</div>
-              <div className=" text-primary-600 mt-4 w-1/2">
+              <div className="sm:text-center sm:w-full sm:px-8 text-primary-600 mt-4 w-1/2">
                 {data?.getProfile.about}
               </div>
             </div>
