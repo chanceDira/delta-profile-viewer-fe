@@ -87,22 +87,22 @@ const Dashboard = () => {
             <CheckItem name="Certificates" />
           </div>
         </div>
-        <div className=" w-full px-40 py-20">
+        <div className=" w-full md:px-40 sm:px-4 py-20">
           <>
             <div className="w-10/12 h-6 relative  md:block mb-36">
               <form>
                 <input
                   type="text"
-                  className=" mx-4 w-full h-full outline-none text-primary-600 bg-primary-100 rounded pl-6 py-4"
+                  className=" mx-4 w-full h-full outline-none text-primary-600 bg-primary-100 rounded pl-10 py-4"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                 />
                 <div
                   onClick={(e) => handleSearchProfile(e)}
-                  className="absolute top-2 left-5"
+                  className="absolute top-3 left-7"
                 >
                   <button type="submit">
-                    <CiSearch className="  text-primary-600" />
+                    <CiSearch className=" text-2xl text-primary-600" />
                   </button>
                 </div>
               </form>
