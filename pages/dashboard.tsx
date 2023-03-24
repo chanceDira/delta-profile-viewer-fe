@@ -77,23 +77,17 @@ const Dashboard = () => {
       <div>
         <Navbar />
       </div>
-      <div className="md:flex md:flex-row min-h-screen ">
-        <div className="w-1/4 border-r-2  ">
-          <div className="mx-10 my-20 md:block sm:hidden">
-            <CheckItem name="All" />
-            <CheckItem name="Names" />
-            <CheckItem name="Countries" />
-            <CheckItem name="Achievements" />
-            <CheckItem name="Certificates" />
-          </div>
+     <div className="mt-10">
+         <div className="text-center w-full mb-6">
+          <p className="text-primary-600 text-lg">welcome</p>
+           <h1 className="md:text-6xl sm:text-3xl font-bold text-secondary-600">Delta Talent Pool</h1>
         </div>
-        <div className=" w-full md:px-40 sm:px-4 py-20">
-          <>
-            <div className="w-10/12 h-6 relative  md:block mb-36">
+        
+            <div className="flex items-center justify-center md:w-6/12 sm:w-10/12 mx-auto relative  md:block ">
               <form>
                 <input
                   type="text"
-                  className=" mx-4 w-full h-full outline-none text-primary-600 bg-primary-100 rounded pl-10 py-4"
+                  className="w-full h-full outline-none text-primary-600 bg-primary-100 rounded px-16 py-4"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                 />
@@ -107,7 +101,12 @@ const Dashboard = () => {
                 </div>
               </form>
             </div>
-          </>
+      </div>
+       
+      <div className="md:flex md:flex-row min-h-screen ">
+         
+     
+        <div className=" w-full md:px-40 sm:px-4 py-20">
           <div className={`${data2 && "hidden"}`}>
             {loading ? (
               <div className="flex items-center justify-center min-h-screen">
