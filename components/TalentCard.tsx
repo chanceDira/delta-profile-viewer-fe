@@ -17,7 +17,7 @@ const TalentCard = ({ profile }: any) => {
     window.location.href = `/dashboard/${profile.id}`;
   };
   return (
-    <div className="flex flex-row bg-primary-100 rounded-xl py-10 px-14">
+    <div className="flex flex-row bg-primary-100 rounded-xl md:py-10 md:px-14 sm:py-4 sm:px-4">
       <div className="mr-4 w-40 h-40">
         <img src={`${profile.photo}`} className=" rounded-full md:w-40 md:h-40 sm:w-28 sm:h-28 object-cover" alt="image" />
       </div>

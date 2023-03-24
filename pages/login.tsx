@@ -29,11 +29,10 @@ function Login() {
     event.preventDefault();
     signIn({ variables: { email, password } })
       .then((res) => {
-        console.log(res);
         const { token, user } = res.data.signin;
         if (token && user) {
           Cookies.set("token", token, { expires: 7 });
-          localStorage.setItem("currentUser", JSON.stringify(user));
+          Cookies.set("currentUser", JSON.stringify(user), { expires: 7 });
           window.location.href = "/dashboard";
         }
       })

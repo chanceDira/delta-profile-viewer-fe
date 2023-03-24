@@ -60,10 +60,10 @@ function Signup() {
       })
         .then((res) => {
           const { token,user } = res.data.signup;
-          if(token && user){
-            Cookies.set('token', token, { expires: 7 })
-             localStorage.setItem("currentUser",JSON.stringify(user));
-            window.location.href = "/dashboard";
+          if (token && user) {
+             Cookies.set("token", token, { expires: 7 });
+             Cookies.set("currentUser", JSON.stringify(user), { expires: 7 });
+             window.location.href = "/dashboard";
           }
         })
         .catch((err) => {
