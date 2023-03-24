@@ -61,11 +61,9 @@ function Signup() {
         .then((res) => {
           const { token,user } = res.data.signup;
           if (token && user) {
-            //save user in cookie 
-            Cookies.set("currentUser", JSON.stringify(user), { expires: 7 });
-            //set the token in cookies
-            Cookies.set('token', token, { expires: 7 })
-            window.location.href = "/dashboard";
+             Cookies.set("token", token, { expires: 7 });
+             Cookies.set("currentUser", JSON.stringify(user), { expires: 7 });
+             window.location.href = "/dashboard";
           }
         })
         .catch((err) => {
