@@ -7,6 +7,7 @@ import Loader from "@/components/Loader";
 import { CiSearch } from "react-icons/ci";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Dashboard = () => {
   const router = useRouter();
@@ -77,6 +78,14 @@ const Dashboard = () => {
   return (
     <div>
       <div>
+        <Head>
+          <title>Delta Talent Pool</title>
+          <meta
+            name="description"
+            content="Here you will access our talent's projects and information."
+          />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
         <Navbar />
       </div>
       <div className="mt-10">

@@ -10,6 +10,7 @@ import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import Loader from "@/components/Loader";
 import Cookies from "js-cookie";
+import Head from "next/head";
 
 const GET_PROFILE = gql`
   query GetProfile($profileId: ID!) {
@@ -53,6 +54,14 @@ const SingleTalent = () => {
     <>
       <div className="relative">
         <div>
+          <Head>
+            <title>Delta Talent Pool</title>
+            <meta
+              name="description"
+              content="Here you will access our talent's projects and information."
+            />
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
           <Navbar />
         </div>
 
