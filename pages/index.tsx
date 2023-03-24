@@ -3,13 +3,22 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import { Primary } from "@/components/Buttons";
+import Head from "next/head";
 
 function Home() {
-  const handleClick = ()=>{
-    window.location.href="/dashboard"
-  }
+  const handleClick = () => {
+    window.location.href = "/dashboard";
+  };
   return (
     <div className="h-screen flex flex-col">
+      <Head>
+        <title>DELTA Profile Viewer</title>
+        <meta
+          name="description"
+          content="Here you will access our talent's projects and information."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Navbar />
       <div className="grow min-h-screen flex justify-center items-center">
         <div className="flex md:flex-row justify-center items-center place-self-center mx-auto  sm:flex-col sm:mb-12">
