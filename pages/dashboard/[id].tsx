@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import ProjectCard from "@/components/ProjectCard";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { FiLink2 } from "react-icons/fi";
 import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
@@ -9,6 +9,7 @@ import { FaTwitter } from "react-icons/fa";
 import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import Loader from "@/components/Loader";
+import Cookies from "js-cookie";
 
 const GET_PROFILE = gql`
   query GetProfile($profileId: ID!) {
@@ -39,9 +40,14 @@ const SingleTalent = () => {
   const { loading, error, data } = useQuery(GET_PROFILE, {
     variables: { profileId: id },
   });
+  const token = Cookies.get("token");
 
-  console.log(data);
-
+  //redirect to login page if user is not logged in
+  useEffect(() => {
+    if (!token) {
+      router.push("/login");
+    }
+  }, []);
   return (
     <>
       <div className="relative">

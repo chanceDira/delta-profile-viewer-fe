@@ -5,8 +5,11 @@ import { useQuery, gql, useLazyQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import Loader from "@/components/Loader";
 import { CiSearch } from "react-icons/ci";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 const Dashboard = () => {
+  const router = useRouter();
   const GET_PROFILES = gql`
     query {
       getProfiles {
@@ -41,6 +44,7 @@ const Dashboard = () => {
     useLazyQuery(SEARCH_PROFILE);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const token = Cookies.get("token");
 
   const [talents, setTalents] = useState([]);
 
@@ -61,6 +65,12 @@ const Dashboard = () => {
       });
   };
 
+  //redirect to login page if user is not logged in
+  useEffect(() => {
+    if (!token) {
+      router.push("/login");
+    }
+  }, []);
 
   return (
     <div>
