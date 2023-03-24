@@ -60,9 +60,11 @@ function Signup() {
       })
         .then((res) => {
           const { token,user } = res.data.signup;
-          if(token && user){
+          if (token && user) {
+            //save user in cookie 
+            Cookies.set('currentUser', user, { expires: 7 })
+            //set the token in cookies
             Cookies.set('token', token, { expires: 7 })
-             localStorage.setItem("currentUser",JSON.stringify(user));
             window.location.href = "/dashboard";
           }
         })

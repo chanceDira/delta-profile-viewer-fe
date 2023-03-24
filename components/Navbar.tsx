@@ -9,13 +9,15 @@ import { CiSearch } from "react-icons/ci";
 import { CgProfile } from "react-icons/cg";
 import Cookies from "js-cookie";
 import Image from "next/image";
-import { redirect } from 'next/navigation';
+import { useRouter } from "next/router";
+import { redirect } from "next/navigation";
 
 function Navbar() {
   const [navbar, setNavbar] = useState(false);
   const [auth, setAuth] = useState(false);
   const [showSearch, setShowSearch] = useState("");
-  const [user, setUser]=useState<any>(null)
+  const [user, setUser] = useState<any>(null);
+  const router = useRouter();
 
   useEffect(() => {
     setShowSearch(window.location.pathname);
@@ -33,23 +35,19 @@ function Navbar() {
 
   const handleLogout = () => {
     Cookies.remove("token");
-    if (typeof window !== 'undefined') {
-      localStorage.remove('currentUser')
-    }
+    Cookies.remove("currentUser");
     setAuth(false);
-    // window.location.href = "/";
-
-    return redirect("/")
+    router.push("/");
+    window.location.href = "/";
   };
 
-
-useEffect(()=>{
-  //@ts-ignore
-   const currentUser:any = JSON.parse(localStorage.getItem('currentUser'))
-   if (currentUser){
-    setUser(currentUser)
-  }
- },[])
+  useEffect(() => {
+    //@ts-ignore
+    const currentUser: any = Cookies.get("currentUser");
+    if (currentUser) {
+      setUser(JSON.parse(currentUser));
+    }
+  }, []);
 
   return (
     <nav className="w-full bg-white shadow relative">
@@ -85,8 +83,12 @@ useEffect(()=>{
                     <div className="flex items-center">
                       <CgProfile className="text-4xl text-gray-400 mr-4" />
                       <div>
-                        <h1 className="text-primary-600 font-bold ">{user && user.firstname}</h1>
-                        <p className="text-secondary-600">{user && user.__typename}</p>
+                        <h1 className="text-primary-600 font-bold ">
+                          {user && user.firstname}
+                        </h1>
+                        <p className="text-secondary-600">
+                          {user && user.__typename}
+                        </p>
                       </div>
                     </div>
                     <div className="border border-gray-300 my-2"></div>
