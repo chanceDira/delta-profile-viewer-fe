@@ -36,6 +36,8 @@ const GET_PROFILE = gql`
   }
 `;
 
+
+
 const SingleTalent = () => {
   const router = useRouter();
   const { id } = router.query;
