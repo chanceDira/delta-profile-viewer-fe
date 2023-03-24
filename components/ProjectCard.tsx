@@ -24,8 +24,9 @@ const ProjectCard = ({ project }: any) => {
 
   const handleViewVideo = () => {
     //open new tab with link to video
-    window.open(project.githuburl, "_blank");
+    window.open(project.youtubeurl, "_blank");
   };
+
   return (
     <>
       {/* ===============start :: project details model==================  */}
