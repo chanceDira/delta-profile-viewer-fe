@@ -30,6 +30,8 @@ To successfully navigate the codebase of the project, you will need undertanding
 
 - NextJS
 - TypeScript
+- Algolia
+- Terraform
 - Tailwindcss
 
 
